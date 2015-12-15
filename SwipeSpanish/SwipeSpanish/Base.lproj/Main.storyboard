@@ -17,29 +17,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="First View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
-                                <rect key="frame" x="221" y="279" width="157.5" height="41.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBS-fb-sjV">
+                                <rect key="frame" x="187" y="84" width="225" height="225"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="su5-cC-oY8">
+                                <rect key="frame" x="278" y="332" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
-                                <rect key="frame" x="203" y="329" width="194.5" height="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pW-og-kdO">
+                                <rect key="frame" x="261" y="401" width="78" height="30"/>
+                                <state key="normal" title="Next Image"/>
+                                <connections>
+                                    <action selector="nextImageButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="rcB-eM-hN9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5sb-ST-dQl">
+                                <rect key="frame" x="143" y="444" width="313" height="30"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRh-fo-SWl">
+                                <rect key="frame" x="275" y="482" width="48" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="SNa-Jb-CDH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="6BV-lF-sBN"/>
-                            <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
-                            <constraint firstItem="A5M-7J-77L" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="e1l-AV-tCB"/>
-                            <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
+                            <constraint firstItem="XBS-fb-sjV" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="30" id="4zq-Kv-Xcb"/>
+                            <constraint firstItem="5pW-og-kdO" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="OPd-YY-Y1W"/>
+                            <constraint firstItem="su5-cC-oY8" firstAttribute="top" secondItem="XBS-fb-sjV" secondAttribute="bottom" constant="23" id="aK6-j7-C08"/>
+                            <constraint firstItem="5pW-og-kdO" firstAttribute="centerX" secondItem="XBS-fb-sjV" secondAttribute="centerX" id="flI-Zy-j01"/>
+                            <constraint firstItem="5pW-og-kdO" firstAttribute="top" secondItem="su5-cC-oY8" secondAttribute="bottom" constant="48" id="o1j-dE-ihe"/>
+                            <constraint firstItem="XBS-fb-sjV" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="qlt-n5-bj9"/>
+                            <constraint firstItem="su5-cC-oY8" firstAttribute="centerX" secondItem="XBS-fb-sjV" secondAttribute="centerX" id="uYy-O4-911"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Play" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="imageDisplayOutlet" destination="XBS-fb-sjV" id="V1N-SR-f8e"/>
+                        <outlet property="searchText" destination="5sb-ST-dQl" id="3jI-VJ-9aJ"/>
+                        <outlet property="spanishWordLabel" destination="su5-cC-oY8" id="Hs8-AK-gbY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
