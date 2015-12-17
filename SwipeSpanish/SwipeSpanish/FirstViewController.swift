@@ -16,6 +16,7 @@ let EXTRAS:String! = "url_m"
 let DATA_FORMAT:String! = "json"
 let SAFE_SEARCH:String!="1"
 let NO_JSON_CALLBACK:String! = "1"
+let SORT = "relevance"
 
 class FirstViewController: UIViewController {
     
@@ -100,10 +101,10 @@ class FirstViewController: UIViewController {
                         }
                        
                         /* Grab a single, random image */
-                    let randomPhotoIndex = Int(arc4random_uniform(UInt32(self.iNamey.count)))
+                   let randomPhotoIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
                         
-                        let photoDictionary = photoArray[randomPhotoIndex] as [String: AnyObject]
-                        
+                       let photoDictionary = photoArray[randomPhotoIndex] as [String: AnyObject]
+                    //    let photoDictionary = photoArray[0] as [String: AnyObject]
                        
                         /* Get the image url and title of random image */
                         let photoTitle = photoDictionary["title"] as? String
@@ -116,11 +117,18 @@ class FirstViewController: UIViewController {
                         if let imageData = NSData(contentsOfURL: imageURL!) {
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.imageDisplayOutlet.image = UIImage(data: imageData)
+                                self.imageDisplayOutlet.contentMode = .ScaleAspectFit
+                                self.imageDisplayOutlet.clipsToBounds = true
                              /*   if we want to set a title, we can set it here:
                                 self.titleLabel.text = photoTitle */
+                            
                                 
                             })
-                        } else {
+                        
+                        }
+                        
+                        
+                        else {
                             print("Image does not exist at \(imageURL) or can't find key 'photo' in \(photosDictionary) or in \(parsedResult)")
                         }
                     }
@@ -171,26 +179,29 @@ class FirstViewController: UIViewController {
     
     @IBAction func nextImageButton(sender: AnyObject) {
         
+        
+        
     }
     @IBAction func searchButton(sender: AnyObject) {
-        let word:String! = self.searchText.text
+        let word:String = self.searchText.text!
         print(word)
         
         var methodArguments = [
             "method": METHOD_NAME,
             "api_key": API_KEY,
             "text": word,
-            "sefe_search": SAFE_SEARCH,
+            "safe_search": SAFE_SEARCH,
             "extras": EXTRAS,
             "format": DATA_FORMAT,
-            "nojsoncallback": NO_JSON_CALLBACK
+            "nojsoncallback": NO_JSON_CALLBACK,
+            "sort": SORT
         ]
         if methodArguments.isEmpty {
             
         }else {
             self.getImageFromFlickrSearch(methodArguments)
         }
-                        } //close IBAction searchButton
+    } //close IBAction searchButton
     
 
 }
