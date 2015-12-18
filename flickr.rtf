@@ -1,0 +1,223 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red196\green26\blue22;\red92\green38\blue153;
+\red0\green116\blue0;\red28\green0\blue207;\red63\green110\blue116;\red46\green13\blue110;\red38\green71\blue75;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs22 \cf0 \CocoaLigature0 \
+\cf2 import\cf0  UIKit\
+\
+\
+\cf2 let\cf0  BASE_URL = \cf3 "https://api.flickr.com/services/rest/"\cf0 \
+\cf2 let\cf0  METHOD_NAME:\cf4 String\cf0 ! = \cf3 "flickr.photos.search"\cf0 \
+\cf2 let\cf0  API_KEY:\cf4 String\cf0 ! = \cf3 \'93APIKEY GOES HERE\'94\cf0 \
+\cf2 let\cf0  GALLERY_ID:\cf4 String\cf0 ! = \cf3 "5704-72157622566655097"\cf5 \
+\cf2 let\cf0  EXTRAS:\cf4 String\cf0 ! = \cf3 "url_m"\cf0 \
+\cf2 let\cf0  DATA_FORMAT:\cf4 String\cf0 ! = \cf3 "json"\cf0 \
+\cf2 let\cf0  SAFE_SEARCH:\cf4 String\cf0 !=\cf3 "1"\cf0 \
+\cf2 let\cf0  NO_JSON_CALLBACK:\cf4 String\cf0 ! = \cf3 "1"\cf0 \
+\
+\cf2 class\cf0  ViewController: \cf4 UIViewController\cf0  \{\
+    //below are arrays that save all the images related to the keyword \
+	//so that we can show them later when the Next button is pressed\
+    \cf2 var\cf0  photoArray2: \cf4 AnyObject\cf0 !=[\cf4 String\cf0 : \cf4 AnyObject\cf0 ]()\
+    \
+    \cf2 var\cf0  iNamey=[\cf4 String\cf0 ]()\
+    \cf2 var\cf0  iImage=[\cf4 String\cf0 ]()\
+    \cf2 var\cf0  iImageUrl=[\cf4 NSURL\cf0 ]()\
+    \
+    \cf2 var\cf0  counter=\cf6 0\cf0 ;\
+    \
+    \
+    \cf2 @IBOutlet\cf0  \cf2 weak\cf0  \cf2 var\cf0  mainImg: \cf4 UIImageView\cf0 !\
+    \
+    \
+    \cf2 @IBOutlet\cf0  \cf2 weak\cf0  \cf2 var\cf0  searchText: \cf4 UITextField\cf0 !\
+    \
+    \cf2 @IBOutlet\cf0  \cf2 weak\cf0  \cf2 var\cf0  searchButton: \cf4 UIButton\cf0 !\
+    \
+        \
+    \
+    \
+    \
+    \
+    \
+    \cf2 @IBOutlet\cf0  \cf2 weak\cf0  \cf2 var\cf0  titleLabel: \cf4 UILabel\cf0 !\
+    \
+    \
+    \
+    \cf2 @IBAction\cf0  \cf2 func\cf0  searchAction(sender: \cf4 AnyObject\cf0 ) \{\cf5 //\
+\cf0         \cf2 let\cf0  word:\cf4 String\cf0 ! = \cf7 searchText\cf0 .\cf4 text\cf0 \
+         \cf8 print\cf0 (word)\
+        \cf5 /* 2 - API method arguments */\cf0 \
+        \cf2 var\cf0  methodArguments = [\
+            \cf3 "method"\cf0 : \cf7 METHOD_NAME\cf0 ,\
+            \cf3 "api_key"\cf0 : \cf7 API_KEY\cf0 ,\
+            \cf3 "text"\cf0 : word,\
+            \cf3 "safe_search"\cf0 : \cf7 SAFE_SEARCH\cf0 ,\
+            \cf3 "extras"\cf0 : \cf7 EXTRAS\cf0 ,\
+            \cf3 "format"\cf0 : \cf7 DATA_FORMAT\cf0 ,\
+            \cf3 "nojsoncallback"\cf0 : \cf7 NO_JSON_CALLBACK\cf0 \
+        ]\
+        \cf2 if\cf0  methodArguments.\cf4 isEmpty\cf0  \{\
+        \}\cf2 else\cf0 \{\
+             \cf9 getImageFromFlickrSearch\cf0 (methodArguments)\cf5 //passes API Key and search term to method\
+\cf0         \}\
+          \cf5 //as! [String : AnyObject])\
+\cf0         \
+        \
+    \}\
+    \
+    \cf2 @IBAction\cf0  \cf2 func\cf0  geoAction(sender: \cf4 AnyObject\cf0 ) \{\
+    \}\
+    \
+    \
+\
+    \cf2 override\cf0  \cf2 func\cf0  viewDidLoad() \{\
+        \cf2 super\cf0 .\cf8 viewDidLoad\cf0 ()\
+        \cf5 // Do any additional setup after loading the view, typically from a nib.\
+\cf0     \}\
+\
+    \cf2 override\cf0  \cf2 func\cf0  didReceiveMemoryWarning() \{\
+        \cf2 super\cf0 .\cf8 didReceiveMemoryWarning\cf0 ()\
+        \cf5 // Dispose of any resources that can be recreated.\
+\cf0     \}\
+    \
+    \cf2 func\cf0  getImageFromFlickrSearch(methodArguments:[\cf4 String\cf0  : \cf4 String\cf0 !]) \{\
+       \
+        \
+        \cf5 /* 3 - Initialize session and url  - Use NSURLSessions to connect */\cf0 \
+        \cf2 let\cf0  session = \cf4 NSURLSession\cf0 .\cf8 sharedSession\cf0 ()\
+        \cf2 let\cf0  urlString = \cf7 BASE_URL\cf0  + \cf9 escapedParameters\cf0 (methodArguments)\
+        \cf8 print\cf0 (urlString)\
+        \cf2 let\cf0  url = \cf4 NSURL\cf0 (string: urlString)!\
+        \cf2 let\cf0  request = \cf4 NSURLRequest\cf0 (URL: url)\
+        \
+        \cf5 /* 4 - Initialize task for getting data  - initialize task*/\cf0 \
+        \cf2 let\cf0  task = session.\cf8 dataTaskWithRequest\cf0 (request) \{data, response, downloadError \cf2 in\cf0 \
+            \cf2 if\cf0  \cf2 let\cf0  error = downloadError \{\
+                \cf8 print\cf0 (\cf3 "Could not complete the request \cf0 \\\cf3 (\cf0 error\cf3 )"\cf0 )\
+            \} \cf2 else\cf0  \{\
+                \cf5 /* 5 - Success! Parse the data */\cf0 \
+                \cf2 var\cf0  parsingError: \cf4 NSError\cf0 ? = \cf2 nil\cf0 \
+                \cf2 let\cf0  parsedResult: \cf4 AnyObject\cf0 !\
+                \cf2 do\cf0  \{\
+                    parsedResult = \cf2 try\cf0  \cf4 NSJSONSerialization\cf0 .\cf8 JSONObjectWithData\cf0 (data!, options: \cf4 NSJSONReadingOptions\cf0 .AllowFragments)\
+                \} \cf2 catch\cf0  \cf2 let\cf0  error \cf2 as\cf0  \cf4 NSError\cf0  \{\
+                    parsingError = error\
+                    parsedResult = \cf2 nil\cf0 \
+                \} \cf2 catch\cf0  \{\
+                    \cf8 fatalError\cf0 ()\
+                \}\
+                \
+                \cf2 if\cf0  \cf2 let\cf0  photosDictionary = parsedResult.valueForKey(\cf3 "photos"\cf0 ) \cf2 as\cf0 ? \cf4 NSDictionary\cf0  \{\
+                    \cf2 if\cf0  \cf2 let\cf0  photoArray = photosDictionary.\cf8 valueForKey\cf0 (\cf3 "photo"\cf0 ) \cf2 as\cf0 ? [[\cf4 String\cf0 : \cf4 AnyObject\cf0 ]] \{\
+                       \
+                        \
+                    \cf2 for\cf0  (\cf2 var\cf0  index = \cf6 0\cf0 ; index < photoArray.\cf4 count\cf0 ; ++index )\{\
+                            \cf2 let\cf0  photoDictionary = photoArray[index] \cf2 as\cf0  [\cf4 String\cf0 : \cf4 AnyObject\cf0 ]\
+                        \
+                        \
+                            \cf2 let\cf0  photoTitle = photoDictionary[\cf3 "title"\cf0 ] \cf2 as\cf0 ? \cf4 String\cf0 \
+                            \cf2 var\cf0  imageUrlString = photoDictionary[\cf3 "url_m"\cf0 ] \cf2 as\cf0 ? \cf4 String\cf0 \
+                        \cf2 if\cf0 (imageUrlString==\cf2 nil\cf0 )\{\
+                        \}\cf2 else\cf0 \{\
+                            \cf2 let\cf0  imageURL = \cf4 NSURL\cf0 (string: imageUrlString!)\
+                        \cf5 /* 7 - Save info to arrays  */\cf0 \
+                           \cf2 self\cf0 .\cf7 iNamey\cf0 .\cf8 append\cf0 (photoTitle!)\
+                           \cf2 self\cf0 .\cf7 iImage\cf0 .\cf8 append\cf0 (imageUrlString!)\
+                           \cf2 self\cf0 .\cf7 iImageUrl\cf0 .\cf8 append\cf0 (imageURL!)\
+                        \}\
+                       \
+                        \
+                    \}\
+                        \cf5 /* 6 - Grab a single, random image */\cf0 \
+                        \cf2 let\cf0  randomPhotoIndex = \cf4 Int\cf0 (\cf8 arc4random_uniform\cf0 (\cf4 UInt32\cf0 (\cf2 self\cf0 .\cf7 iNamey\cf0 .\cf4 count\cf0 )))\
+\
+                        \
+                        \cf2 let\cf0  photoDictionary = photoArray[randomPhotoIndex] \cf2 as\cf0  [\cf4 String\cf0 : \cf4 AnyObject\cf0 ]\
+                        \
+                        \cf5 /* 7 - Get the image url and title of random image */\cf0 \
+                        \cf2 let\cf0  photoTitle = photoDictionary[\cf3 "title"\cf0 ] \cf2 as\cf0 ? \cf4 String\cf0 \
+                        \cf2 let\cf0  imageUrlString = photoDictionary[\cf3 "url_m"\cf0 ] \cf2 as\cf0 ? \cf4 String\cf0 \
+                        \cf2 let\cf0  imageURL = \cf4 NSURL\cf0 (string: imageUrlString!)\
+                        \
+                        \cf5 /* 8 - If an image exists at the url, set the image and title to storyboard*/\cf0 \
+                        \cf2 if\cf0  \cf2 let\cf0  imageData = \cf4 NSData\cf0 (contentsOfURL: imageURL!) \{\
+                            \cf8 dispatch_async\cf0 (\cf8 dispatch_get_main_queue\cf0 (), \{\
+                                \cf2 self\cf0 .\cf7 mainImg\cf0 .\cf4 image\cf0  = \cf4 UIImage\cf0 (data: imageData)\
+                                \cf2 self\cf0 .\cf7 titleLabel\cf0 .\cf4 text\cf0  = photoTitle\
+                            \})\
+                        \} \cf2 else\cf0  \{\
+                            \cf8 print\cf0 (\cf3 "Image does not exist at \cf0 \\\cf3 (\cf0 imageURL\cf3 )"\cf0 )\
+                        \}\
+                    \} \cf2 else\cf0  \{\
+                        \cf8 print\cf0 (\cf3 "Cant find key 'photo' in \cf0 \\\cf3 (\cf0 photosDictionary\cf3 )"\cf0 )\
+                    \}\
+                \} \cf2 else\cf0  \{\
+                    \cf8 print\cf0 (\cf3 "Cant find key 'photos' in \cf0 \\\cf3 (\cf0 parsedResult\cf3 )"\cf0 )\
+                \}\
+            \}\
+        \}\
+        \
+        \cf5 /* 9 - Resume (execute) the task */\cf0 \
+        task.\cf8 resume\cf0 ()\
+    \}\
+    \
+    \cf5 /* Helper function: Given a dictionary of parameters, convert to a string for a url */\cf0 \
+    \cf2 func\cf0  escapedParameters(parameters: [\cf4 String\cf0  : \cf4 String\cf0 !]) -> \cf4 String\cf0 ! \{\
+        \
+        \cf2 var\cf0  urlVars = [\cf4 String\cf0 ]()\
+        \
+        \cf2 for\cf0  (key, value) \cf2 in\cf0  parameters \{\
+            \
+            \cf5 /* Make sure that it is a string value */\cf0 \
+            \cf2 let\cf0  stringValue = \cf3 "\cf0 \\\cf3 (\cf0 value\cf3 )"\cf0 \
+            \
+            \cf5 /* Escape it */\cf0 \
+            \cf2 let\cf0  escapedValue = stringValue.\cf8 stringByAddingPercentEncodingWithAllowedCharacters\cf0 (\cf4 NSCharacterSet\cf0 .\cf8 URLQueryAllowedCharacterSet\cf0 ())\
+            \
+            \cf5 /* Append it */\cf0 \
+            urlVars += [key + \cf3 "="\cf0  + \cf3 "\cf0 \\\cf3 (\cf0 escapedValue!\cf3 )"\cf0 ]\
+            \
+        \}\
+        \
+        \cf2 return\cf0  (!urlVars.\cf4 isEmpty\cf0  ? \cf3 "?"\cf0  : \cf3 ""\cf0 ) + urlVars.\cf8 joinWithSeparator\cf0 (\cf3 "&"\cf0 )\
+    \}\
+    \
+    \
+    \
+    \
+    \cf2 @IBAction\cf0  \cf2 func\cf0  NextImg(sender: \cf4 AnyObject\cf0 ) \{\
+        \cf9 nextPerson\cf0 ()\
+    \}\
+    \
+    \
+\
+    \cf2 func\cf0  nextPerson()\{\
+        \
+        \
+        \cf5 /* 8 - If an image exists at the url, set the image and title */\cf0 \
+        \cf2 if\cf0  \cf2 let\cf0  imageData = \cf4 NSData\cf0 (contentsOfURL: \cf7 iImageUrl\cf0 [\cf7 counter\cf0 ]) \{\
+            \cf8 dispatch_async\cf0 (\cf8 dispatch_get_main_queue\cf0 (), \{\
+                \cf2 self\cf0 .\cf7 mainImg\cf0 .\cf4 image\cf0  = \cf4 UIImage\cf0 (data: imageData)\
+                \cf2 self\cf0 .\cf7 titleLabel\cf0 .\cf4 text\cf0  = \cf2 self\cf0 .\cf7 iNamey\cf0 [\cf2 self\cf0 .\cf7 counter\cf0 ]\
+                \cf2 self\cf0 .\cf7 counter\cf0 ++\
+                \cf2 if\cf0 (\cf2 self\cf0 .\cf7 counter\cf0 ==\cf2 self\cf0 .\cf7 iNamey\cf0 .\cf4 count\cf0 )\{\
+                    \cf2 self\cf0 .\cf7 counter\cf0 =\cf6 0\cf0 ;\
+                \}\
+            \})\
+        \} \cf2 else\cf0  \{\
+            \cf8 print\cf0 (\cf3 "Image does not exist at \cf0 \\\cf3 (\cf7 iImageUrl\cf0 [\cf6 0\cf0 ]\cf3 )"\cf0 )\
+        \}    \}\cf5 //end of method\
+\cf0 \
+\
+   \
+\
+\
+\}\
+\
+}
