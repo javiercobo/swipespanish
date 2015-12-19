@@ -1,15 +1,7 @@
-//
-//  TranslationDictionary.swift
-//  SwipeSpanish
-//
-//  Created by Cindy Le on 12/18/15.
-//  Copyright © 2015 Cobo, Javier. All rights reserved.
-//
+//: Playground - noun: a place where people can play
 
 import Foundation
 
-struct Words {
-    
 let wordsArray = [
     ["el águila","eagle"  ],
     ["la alondra","lark"  ],
@@ -143,62 +135,23 @@ let wordsArray = [
     ["el zorro","fox"  ],
 ]
 
-    //this function needs to call a random array from the second value which is English, then also display the first value of the array, which is Spanish
 
-    func randomArray() -> [String]{
-        
-        
-        let arrayCount = UInt32(wordsArray.count)
-        let randomNumber = Int(arc4random_uniform(arrayCount))
-        
-        
+//this function needs to call a random array from the second value which is English, then also display the first value of the array, which is Spanish
 
-        let randomPair = self.wordsArray[randomNumber]
-//        print(randomPair)
-        
-        return randomPair
-        
-        
-//        let spanish = randomPair.0
-//        print(spanish)
-//        let english = randomArray().1
-////        print(english)
-//        return (spanish,english)
-        
-    }
-   
+
+    let arrayCount = Int(wordsArray.count)
+
 
     
-
+    //        let randomNumber = Int(arc4random_uniform(arrayCount))
     
-//    func showEnglish() -> String{
-//        var monkey =
-//        
-//        print(randomArray()[1])
-//        return randomArray()[1]
-//        
-//        
-//    }
 //    
-//    func showSpanish() -> String{
-//        let spanishWord = randomArray()[0]
-//        
-//        print(spanishWord)
-//        
-//        return spanishWord
-//    }
+//    let randomPair = wordsArray[0]
+//    print(randomPair)
+//    return randomPair
     
     
 
-    
-    
-    
-
-    
-
-    
-    
-}
 
 
 
