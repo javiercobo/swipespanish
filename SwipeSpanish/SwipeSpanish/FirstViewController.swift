@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 let BASE_URL = "https://api.flickr.com/services/rest/"
 let METHOD_NAME:String! = "flickr.photos.search"
 let API_KEY:String! = "0693969f57676ff5e48db06d2ba62027"
@@ -18,7 +20,10 @@ let SAFE_SEARCH:String!="1"
 let NO_JSON_CALLBACK:String! = "1"
 let SORT = "relevance"
 
+
+
 class FirstViewController: UIViewController {
+    let wordsStruct = Words()
     
     var photoArray2: AnyObject! = [String: AnyObject]()
     
@@ -178,12 +183,13 @@ class FirstViewController: UIViewController {
 
     
     @IBAction func nextImageButton(sender: AnyObject) {
-        
-        
-        
+
     }
+    
+   //replace searchText with random in dictionary
+   
     @IBAction func searchButton(sender: AnyObject) {
-        let word:String = self.searchText.text!
+        let word:String = self.wordsStruct.englishWord
         print(word)
         
         var methodArguments = [

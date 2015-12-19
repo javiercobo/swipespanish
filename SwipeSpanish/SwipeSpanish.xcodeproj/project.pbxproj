@@ -13,6 +13,7 @@
 		577BBE881C1CB24B008C7822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BBE861C1CB24B008C7822 /* Main.storyboard */; };
 		577BBE8A1C1CB24B008C7822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 577BBE891C1CB24B008C7822 /* Assets.xcassets */; };
 		577BBE8D1C1CB24B008C7822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BBE8B1C1CB24B008C7822 /* LaunchScreen.storyboard */; };
+		7375F1651C24D36E00527C8B /* TranslationDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7375F1641C24D36E00527C8B /* TranslationDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		577BBE891C1CB24B008C7822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		577BBE8C1C1CB24B008C7822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		577BBE8E1C1CB24B008C7822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7375F1641C24D36E00527C8B /* TranslationDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				577BBE891C1CB24B008C7822 /* Assets.xcassets */,
 				577BBE8B1C1CB24B008C7822 /* LaunchScreen.storyboard */,
 				577BBE8E1C1CB24B008C7822 /* Info.plist */,
+				7375F1641C24D36E00527C8B /* TranslationDictionary.swift */,
 			);
 			path = SwipeSpanish;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				577BBE851C1CB24B008C7822 /* SecondViewController.swift in Sources */,
 				577BBE811C1CB24B008C7822 /* AppDelegate.swift in Sources */,
 				577BBE831C1CB24B008C7822 /* FirstViewController.swift in Sources */,
+				7375F1651C24D36E00527C8B /* TranslationDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
