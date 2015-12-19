@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		577B6F951C24D32500F2C31D /* TranslationDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577B6F941C24D32500F2C31D /* TranslationDictionary.swift */; };
 		577BBE811C1CB24B008C7822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BBE801C1CB24B008C7822 /* AppDelegate.swift */; };
 		577BBE831C1CB24B008C7822 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BBE821C1CB24B008C7822 /* FirstViewController.swift */; };
 		577BBE851C1CB24B008C7822 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BBE841C1CB24B008C7822 /* SecondViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		577B6F941C24D32500F2C31D /* TranslationDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationDictionary.swift; sourceTree = "<group>"; };
 		577BBE7D1C1CB24B008C7822 /* SwipeSpanish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeSpanish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577BBE801C1CB24B008C7822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		577BBE821C1CB24B008C7822 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				577BBE891C1CB24B008C7822 /* Assets.xcassets */,
 				577BBE8B1C1CB24B008C7822 /* LaunchScreen.storyboard */,
 				577BBE8E1C1CB24B008C7822 /* Info.plist */,
+				577B6F941C24D32500F2C31D /* TranslationDictionary.swift */,
 			);
 			path = SwipeSpanish;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				577BBE851C1CB24B008C7822 /* SecondViewController.swift in Sources */,
 				577BBE811C1CB24B008C7822 /* AppDelegate.swift in Sources */,
 				577BBE831C1CB24B008C7822 /* FirstViewController.swift in Sources */,
+				577B6F951C24D32500F2C31D /* TranslationDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
