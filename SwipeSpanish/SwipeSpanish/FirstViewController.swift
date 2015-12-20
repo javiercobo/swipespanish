@@ -19,7 +19,6 @@ let DATA_FORMAT:String! = "json"
 let SAFE_SEARCH:String!="1"
 let NO_JSON_CALLBACK:String! = "1"
 let SORT = "relevance"
-let TAGS = "animals"
 
 
 
@@ -46,7 +45,7 @@ class FirstViewController: UIViewController {
         let randomArray = self.wordStruct.randomArray()
         
         let word:String = randomArray[1]
-        let tag:String = "animal"
+
         
         
         
@@ -63,13 +62,13 @@ class FirstViewController: UIViewController {
             "format": DATA_FORMAT,
             "nojsoncallback": NO_JSON_CALLBACK,
             "sort": SORT,
-            "tags": tag
+
         ]
-        if methodArguments.isEmpty {
-            
-        }else {
+//        if methodArguments.isEmpty {
+//            
+//        }else {
             self.flickrImage.getImageFromFlickrSearch(methodArguments, imageToUpdate: self.imageDisplayOutlet)
-        }
+//        }
         // Do any additional setup after loading the view, typically from a nib.
 //        https://api.flickr.com/services/rest/?method=flickr.test.echo&name=value
     }
@@ -96,27 +95,13 @@ class FirstViewController: UIViewController {
                     
                     
             
-    func nextPerson(){
-        /* If image exists at url, set the image and title */
-        if let imageData = NSData(contentsOfURL: self.flickrImage.iImageUrl[self.flickrImage.counter]) {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.imageDisplayOutlet.image = UIImage(data: imageData)
-              /* if we want to include title:  self.titleLabel.text = self.iNamey[self.counter] */
-                self.flickrImage.counter++
-                if(self.flickrImage.counter==self.flickrImage.iNamey.count){
-                    self.flickrImage.counter=0;
-                }
-            })
-        } else {
-            print("Image does not exist at \(flickrImage.iImageUrl[0])")
-        }
-    } // end of func nextPerson()
+
             
 
 
     
     @IBAction func nextImageButton(sender: AnyObject) {
-
+        flickrImage.nextPerson(self.imageDisplayOutlet)
     }
     
    //replace searchText with random in dictionary

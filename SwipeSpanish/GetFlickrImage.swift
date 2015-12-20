@@ -29,6 +29,7 @@ class GetFlickrImage {
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
     
+
     
     func getImageFromFlickrSearch(methodArguments: [String : String!], imageToUpdate: UIImageView) {
         let session = NSURLSession.sharedSession()
@@ -73,7 +74,10 @@ class GetFlickrImage {
                         }
                         
                         /* Grab a single, random image */
-                        let randomPhotoIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
+//                        let randomPhotoIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
+                        // changed this to only the top 5 to reduce poor image results.  Trying to get only the most relevant results.  Ideally, would try to find a way to tag only animals so that things like "cricket" wouldn't show the sport and "crane" won't show a construction machine
+                        
+                        let randomPhotoIndex = Int(arc4random_uniform(UInt32(5)))
                         
                         let photoDictionary = photoArray[randomPhotoIndex] as [String: AnyObject]
                         //    let photoDictionary = photoArray[0] as [String: AnyObject]
@@ -122,6 +126,24 @@ class GetFlickrImage {
         task.resume()
         
     }
+    
+    func nextPerson(imageToUpdate: UIImageView){
+        /* If image exists at url, set the image and title */
+        
+        
+        if let imageData = NSData(contentsOfURL: iImageUrl[counter]) {
+            dispatch_async(dispatch_get_main_queue(), {
+                imageToUpdate.image = UIImage(data: imageData)
+                /* if we want to include title:  self.titleLabel.text = self.iNamey[self.counter] */
+                self.counter++
+                if(self.counter==self.iNamey.count){
+                    self.counter=0;
+                }
+            })
+        } else {
+            print("Image does not exist at \(iImageUrl[0])")
+        }
+    } // end of func nextPerson()
    
 
 
