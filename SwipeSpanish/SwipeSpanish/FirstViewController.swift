@@ -23,7 +23,7 @@ let SORT = "relevance"
 
 
 class FirstViewController: UIViewController {
-    let wordStruct = Words()
+    let wordsStruct = Words()
     
     var photoArray2: AnyObject! = [String: AnyObject]()
     
@@ -42,32 +42,6 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let randomArray = self.wordStruct.randomArray()
-        
-        let word:String = randomArray[1]
-        
-        
-        
-        //        print(word)
-        
-        self.spanishWordLabel.text = randomArray[0]
-        
-        var methodArguments = [
-            "method": METHOD_NAME,
-            "api_key": API_KEY,
-            "text": word,
-            "safe_search": SAFE_SEARCH,
-            "extras": EXTRAS,
-            "format": DATA_FORMAT,
-            "nojsoncallback": NO_JSON_CALLBACK,
-            "sort": SORT
-        ]
-        if methodArguments.isEmpty {
-            
-        }else {
-            self.getImageFromFlickrSearch(methodArguments)
-        }
         // Do any additional setup after loading the view, typically from a nib.
 //        https://api.flickr.com/services/rest/?method=flickr.test.echo&name=value
     }
@@ -215,15 +189,8 @@ class FirstViewController: UIViewController {
    //replace searchText with random in dictionary
    
     @IBAction func searchButton(sender: AnyObject) {
-        let randomArray = self.wordStruct.randomArray()
-        
-        let word:String = randomArray[1]
-        
-        
-        
-//        print(word)
-        
-        self.spanishWordLabel.text = randomArray[0]
+        let word:String = self.wordsStruct.englishWord
+        print(word)
         
         var methodArguments = [
             "method": METHOD_NAME,
