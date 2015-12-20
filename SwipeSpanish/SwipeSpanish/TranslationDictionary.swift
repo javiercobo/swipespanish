@@ -143,28 +143,57 @@ let wordsArray = [
     ["el zorro","fox"  ],
 ]
 
-    var englishWord = ""
-    var spanishWord = ""
-
     //this function needs to call a random array from the second value which is English, then also display the first value of the array, which is Spanish
 
-    func randomWord() -> String{
+    func randomArray() -> [String]{
+        
+        
         let arrayCount = UInt32(wordsArray.count)
         let randomNumber = Int(arc4random_uniform(arrayCount))
-        let randomPair = wordsArray[randomNumber]
-        let englishWord = randomPair[1]
-//        let spanishWord = randomPair[0]
+        
+        
 
+        let randomPair = self.wordsArray[randomNumber]
+//        print(randomPair)
         
-        func showSpanish() -> String{
-            let spanishWord = randomPair[0]
-            return spanishWord
-        }
+        return randomPair
         
-        print(englishWord)
-        return englishWord
+        
+//        let spanish = randomPair.0
+//        print(spanish)
+//        let english = randomArray().1
+////        print(english)
+//        return (spanish,english)
         
     }
+   
+
+    
+
+    
+//    func showEnglish() -> String{
+//        var monkey =
+//        
+//        print(randomArray()[1])
+//        return randomArray()[1]
+//        
+//        
+//    }
+//    
+//    func showSpanish() -> String{
+//        let spanishWord = randomArray()[0]
+//        
+//        print(spanishWord)
+//        
+//        return spanishWord
+//    }
+    
+    
+
+    
+    
+    
+
     
 
     
